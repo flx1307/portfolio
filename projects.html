@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="projects.css">
+    <style>
+        /* Mini-player styles */
+        .mini-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 170px;
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            cursor: grab;
+            z-index: 1000;
+        }
+
+        .mini-player video {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .dragging {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1 style="font-family: Verdana;" id="fraserl">Fraser Long's Portfolio</h1>
+    </div>
+
+    <div>
+        <ul id="navigation">
+            <li><a href="home.html">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="contact.html">Contact Me</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <h1 id="myprojects">Projects</h1>
+    </div>
+
+    <div class="projects-container">
+        <div class="project"
+            onclick="openModal('Staying Safe Online comic book', 'For Unit 3, I was tasked with creating a media product which discusses a selected social action campaign for the small youth center SoapBox. In this comic I discussed one of the many prevalent issues for children in the current world being e-Safety. Within the project I was able to showcase my overall graphic design skills as well my ability to use Photoshop and the many tools that come with it.', 'eSafety Comic Book page 1.jpg')">
+            <img src="eSafety Comic Book Page 1.jpg" alt="eSafety Comic">
+        </div>
+
+        <div class="project"
+            onclick="openModal('eSafety Advertising Campaign','For Unit 20, I was tasked with creating an advertising campaign for the release of my social action comic book. Throughout the unit, I was tasked with researching various advertising campaigns and how they were planned to successfully target a specific audience. I then used this reasearch to develop my own advertising campaign for my comic book through a number of different formats. Once again, this project allowed me to showcase my graphic design skills in addition to helping me strengthen my knowledge of Photoshop.', 'E-Safety Instagram Post (1).png')">
+            <img src="E-Safety Instagram Post (1).png" alt="eSafety advertising campaign">
+        </div>
+
+        <div class="project"
+            onclick="openModal('Ability Bow Maze Game', 'For Unit 6, I was tasked with creating a mobile game for the company AbilityBow. The main objective of the game was to utilise a phone gyroscope feature to improve the dexterity of older users as the game would be used to help those who have dealt with life-altering illnesses which have effected their movement. The game created ended up being a maze game which tasekd the player with moving a ball to collect a star while avoiding various obstacles along the way. By developing this game, I was able to learn how to use the software development website Thunkable as well as learn how to code a game to use a phones gyroscope feature', 'abilitybowmazegameexample.png')">
+            <img src="Unit 6 AbilityBow Game.jpg" alt="Ability Bow Maze Game">
+        </div>
+    </div>
+
+    <!-- Floating Mini Video Player -->
+    <div class="mini-player" id="miniPlayer">
+        <video id="miniVideo" src="Final Iteration of AbilityBow Maze Game.mp4" controls></video>
+    </div>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <img id="modal-image" src="" alt="" style="width: 50%; margin-top: -10px;">
+            <iframe id="modal-video" src="" frameborder="0" allowfullscreen style="width: 100%; height: 300px; display: none;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title, description, imageURL, videoURL = "") {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+
+            let modalImage = document.getElementById('modal-image');
+            let modalVideo = document.getElementById('modal-video');
+
+            if (videoURL) {
+                modalVideo.src = videoURL;
+                modalVideo.style.display = 'block'; // Show the video
+                modalImage.style.display = 'none';  // Hide the image
+            } else {
+                modalImage.src = imageURL;
+                modalImage.style.display = 'block'; // Show the image
+                modalVideo.style.display = 'none';  // Hide the video
+            }
+
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.getElementById('modal-video').src = ""; // Stop the video when modal closes
+        }
+
+        // Mini Player Dragging Functionality
+        let miniPlayer = document.getElementById('miniPlayer');
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        miniPlayer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - miniPlayer.getBoundingClientRect().left;
+            offsetY = e.clientY - miniPlayer.getBoundingClientRect().top;
+            miniPlayer.classList.add('dragging');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                let newX = e.clientX - offsetX;
+                let newY = e.clientY - offsetY;
+                miniPlayer.style.left = newX + 'px';
+                miniPlayer.style.top = newY + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            miniPlayer.classList.remove('dragging');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!-- <html>
+
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase + Vanilla JS</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+
+<body>
+
+    <div>
+        <h1 style="font-family: Verdana;" id="fraserl">Fraser Long's Portfolio</h1>
+    </div>
+    <div>
+        <ul id="navigation">
+
+            <li><a href="home.html">About Me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+
+        </ul>
+    </div>
+    <div>
+        <h1 id="contactme">Contact Me</h1>
+    </div>
+
+
+    <script>
+        const supabaseUrl = "https://upespezhynwfwlfbqkpb.supabase.co"; // Replace with your Supabase URL
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZXNwZXpoeW53ZndsZmJxa3BiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgwNTY0OTgsImV4cCI6MjA1MzYzMjQ5OH0.KYtQ08Zf4i27VXzHi5pHU0raIVcF7Anb_wS8CW1SW5M"; // Replace with your anonKey
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
+
+    <script>
+        async function fetchData() {
+            const { data, error } = await supabase.from('contactDetails').select('*');
+
+            if (error) {
+                console.error(error);
+            } else {
+                console.log(data);
+            }
+        }
+
+        fetchData();
+
+    // async function insertData() {
+    // const { data, error } = await supabase.from('your_table_name').insert([
+    // { column1: 'value1', column2: 'value2' }
+    // ]);
+    // if (error) {
+    // console.error(error);
+    // } else {
+    // console.log(data);
+    // }
+    // }
+    </script>
+</body>
+
+</html> -->
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="contact.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase + Vanilla JS</title>
+    <!-- Include Supabase JS library -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> -->
+
+</head>
+
+<body>
+
+    <div>
+        <h1 style="font-family: Verdana;" id="fraserl">Fraser Long's Portfolio</h1>
+    </div>
+    <div>
+        <ul id="navigation">
+            <li><a href="home.html">About Me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+        </ul>
+    </div>
+    <div>
+        <h1 id="contactme">Contact Me</h1>
+    </div>
+
+    <!-- JavaScript code should go here -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- <script src="https://unpkg.com/@supabase/supabase-js@2"></script> -->
+
+    <script>
+        // Initialize Supabase client
+        const supabaseUrl = 'https://upespezhynwfwlfbqkpb.supabase.co'; // Replace with your Supabase URL
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZXNwZXpoeW53ZndsZmJxa3BiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgwNTY0OTgsImV4cCI6MjA1MzYzMjQ5OH0.KYtQ08Zf4i27VXzHi5pHU0raIVcF7Anb_wS8CW1SW5M';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // // Fetch data from Supabase
+        // async function fetchData() {
+        //     try {
+        //         const { data, error } = await supabase
+        //             .from('contactDetails')
+        //             .select('*');
+
+        //         if (error) {
+        //             console.error('Error fetching data:', error);
+        //         } else {
+        //             console.log('Data:', data);
+        //         }
+        //     } catch (err) {
+        //         console.error('Unexpected error:', err);
+        //     }
+        // }
+        
+
+        // // Invoke fetchData
+        // fetchData();
+    </script>
+    <div class="contact-form-container">
+        <form class="contact-form"
+        method = "POST"
+        action = "https://script.google.com/macros/s/AKfycbwn9MNgpLqLRhrkEyQEViT7DPWDk9DlTAuH50TmpKJ0KD3BA_h7puv4DutSjqP-WHItcg/exec"
+        >
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+    
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="reason">Reason for Contact:</label>
+            <select id="reason" name="reason">
+                <option value="work-experience">Work Experience</option>
+                <option value="job-offer">Job Offer</option>
+                <option value="other">Other</option>
+            </select>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+    
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
